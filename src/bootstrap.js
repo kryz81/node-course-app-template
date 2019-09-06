@@ -1,22 +1,18 @@
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const passport = require('passport');
-const queue = require('@course/queue');
-const { DB_HOST, DB_PORT, DB_NAME, QUEUE_HOST, QUEUE_PORT } = require('./env');
+const queue = require(`${__dirname}/shared/queue`);
+const { DB_HOST, DB_PORT, DB_NAME, QUEUE_HOST, QUEUE_PORT } = require(`${__dirname}/env`);
 
-const docsModule = require('./modules/docs');
-const homeModule = require('./modules/home');
-const authModule = require('./modules/auth');
-const timeReportingModule = require('./modules/time_reporting');
+const homeModule = require(`${__dirname}/modules/home`);
+const usersModule = require(`${__dirname}/modules/users`);
+const documentsModule = require(`${__dirname}/modules/documents`);
 
 module.exports = async app => {
-  // add middleware
+  // add global middleware
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(helmet());
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   // connect to services
   await queue.connect(QUEUE_HOST, QUEUE_PORT);
@@ -24,8 +20,7 @@ module.exports = async app => {
   mongoose.set('debug', true);
 
   // register routes
-  docsModule(app);
   homeModule(app);
-  authModule(app);
-  timeReportingModule(app);
+  usersModule(app);
+  documentsModule(app);
 };

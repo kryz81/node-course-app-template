@@ -1,25 +1,39 @@
 {
-  "name": "node-course-app",
+  "name": "api",
   "version": "1.0.0",
-  "description": "Advanced Node.js Schulung Example Application",
-  "main": "index.js",
-  "repository": "https://github.com/kryz81/node-course-app.git",
-  "author": "Kryz <k@kryz.dev>",
-  "private": true,
-  "license": "MIT",
-  "engines": {
-    "node": "12.*"
-  },
-  "workspaces": [
-    "packages/*"
-  ],
+  "description": "REST API",
   "scripts": {
-    "lint": "lerna run lint",
-    "prettier": "lerna run prettier",
-    "fix": "lerna run fix",
-    "audit": "yarn audit"
+    "dev": "nodemon --config nodemon.json",
+    "debug": "nodemon --config nodemon-debug.json",
+    "lint": "eslint src",
+    "fix": "prettier --write 'src/**/*.{js,json}'",
+    "docs": "documentation build src/** -f html -o docs"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "dependencies": {
+    "bcrypt": "3.0.6",
+    "bcrypt-node": "0.1.0",
+    "body-parser": "1.19.0",
+    "dotenv": "8.1.0",
+    "express": "4.17.1",
+    "helmet": "3.20.0",
+    "mongoose": "5.6.11",
+    "redis": "2.8.0",
+    "swagger-jsdoc": "3.4.0",
+    "swagger-ui-express": "4.0.7",
+    "uuid": "3.3.3",
+    "winston": "3.2.1"
   },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "documentation": "12.1.1",
+    "eslint": "6.2.0",
+    "eslint-config-prettier": "6.0.0",
+    "eslint-plugin-node": "9.1.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-security": "1.4.0",
+    "nodemon": "1.19.1",
+    "prettier": "1.18.2"
   }
 }
