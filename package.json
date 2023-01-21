@@ -27,7 +27,7 @@
     "winston": "3.2.1"
   },
   "devDependencies": {
-    "documentation": "14.0.0",
+    "documentation": "14.0.1",
     "eslint": "6.2.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-node": "9.1.0",
